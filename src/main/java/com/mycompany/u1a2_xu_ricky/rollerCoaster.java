@@ -152,7 +152,7 @@ public class rollerCoaster extends javax.swing.JFrame {
 
         back = backInput.getText();
         heart = heartInput.getText();
-//        height = Integer.parseInt(cmInput.getText());
+
 
         if (back.toLowerCase().equals("n")) {
             if (heart.toLowerCase().equals("n")) {
