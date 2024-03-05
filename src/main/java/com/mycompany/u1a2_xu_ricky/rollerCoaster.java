@@ -139,46 +139,56 @@ public class rollerCoaster extends javax.swing.JFrame {
 
     private void confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmActionPerformed
         // TODO add your handling code here:
-        
+
         int height;
         String back, heart;
-        
 
         try {
             height = Integer.parseInt(cmInput.getText());
-        } catch (NumberFormatException ndf){
+        } catch (NumberFormatException ndf) {
             output.setText("Please enter a number for height");
-        }        
-        
+            return;
+        }
+
         back = backInput.getText();
         heart = heartInput.getText();
-        height = Integer.parseInt(cmInput.getText());
-        
-        /*if (back.toLowerCase().equals("n") || back.toLowerCase().equals("y")){
-            if (heart.toLowerCase().equals("n") || heart.toLowerCase().equals("y")){
-                if (height > 122 && height < 188){
+//        height = Integer.parseInt(cmInput.getText());
+
+        if (back.toLowerCase().equals("n")) {
+            if (heart.toLowerCase().equals("n")) {
+                if (height > 122 && height < 188) {
                     output.setText("You are allowed to ride the roller coaster!");
                 } else
+                     output.setText("You cannot ride the roller coaster");          
+            } else if (heart.toLowerCase().equals("y")) {
+                output.setText("You cannot ride the roller coaster");
+            } else {
+                output.setText("Please put 'Y' or 'N' for the last 2 questions");
+            }
+        } else if (back.toLowerCase().equals("y")) {
+            output.setText("You cannot ride the roller coaster");
+        } else {
+            output.setText("Please put 'Y' or 'N' for the last 2 questions");
+        }
+
+       /* if (height > 122 && height < 188) {
+            if (back.toLowerCase().equals("n")) {
+                if (heart.toLowerCase().equals("n")) {
+                    output.setText("You are allowed to ride the roller coaster!");
+                } else if (heart.toLowerCase().equals("y")) {
                     output.setText("You cannot ride the roller coaster");
-            } else
-        } */
-        
-        
-        if (height > 122 && height < 188){
-           if (back.toLowerCase().equals("n")) {
-               if (heart.toLowerCase().equals("n")) {
-                   output.setText("You are allowed to ride the roller coaster!");
-               } else if (heart.toLowerCase().equals("y")){
-                   output.setText("You cannot ride the roller coaster");
-               } else
-                   output.setText("Please put 'Y' or 'N' for the last 2 questions");    
-           } else if (back.toLowerCase().equals("y")) {
-               output.setText("You cannot ride the roller coaster");
-           } else
-               output.setText("Please put 'Y' or 'N' for the last 2 questions");     
-        } else
-            output.setText("You cannot ride the roller coaster");  
-  
+                } else {
+                    output.setText("Please put 'Y' or 'N' for the last 2 questions");
+                }
+            } else if (back.toLowerCase().equals("y")) {
+                output.setText("You cannot ride the roller coaster");
+            } else {
+                output.setText("Please put 'Y' or 'N' for the last 2 questions");
+            }
+        } else {
+            output.setText("You cannot ride the roller coaster");
+        }*/
+
     }//GEN-LAST:event_confirmActionPerformed
 
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
@@ -187,10 +197,8 @@ public class rollerCoaster extends javax.swing.JFrame {
 
     private void cmInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmInputActionPerformed
         // TODO add your handling code here:
-        
-        
-        
-        
+
+
     }//GEN-LAST:event_cmInputActionPerformed
 
     /**
