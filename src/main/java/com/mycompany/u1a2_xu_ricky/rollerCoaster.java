@@ -38,22 +38,27 @@ public class rollerCoaster extends javax.swing.JFrame {
         exit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Roller Coaster Checklist");
+        setBackground(new java.awt.Color(204, 255, 255));
 
-        title.setFont(new java.awt.Font("Serif", 2, 18)); // NOI18N
+        title.setFont(new java.awt.Font("Serif", 2, 24)); // NOI18N
+        title.setForeground(new java.awt.Color(137, 207, 240));
         title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         title.setText("Roller Coaster Ride");
 
-        jLabel2.setText("Height in cm");
+        jLabel2.setText("Height in cm:");
 
-        jLabel3.setText("Back issues (Y/N)");
+        jLabel3.setText("Back issues (Y/N):");
 
-        jLabel4.setText("Heart Issues (Y/N)");
+        jLabel4.setText("Heart Issues (Y/N):");
 
         cmInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmInputActionPerformed(evt);
             }
         });
+
+        output.setEditable(false);
 
         confirm.setText("Confirm");
         confirm.addActionListener(new java.awt.event.ActionListener() {
@@ -76,16 +81,6 @@ public class rollerCoaster extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(114, 114, 114)
-                                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(161, 161, 161)
-                                .addComponent(confirm))
-                            .addComponent(exit))
-                        .addGap(0, 57, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(75, 75, 75)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(output)
@@ -98,18 +93,29 @@ public class rollerCoaster extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(heartInput, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(cmInput, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(backInput, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(backInput, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(exit)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(114, 114, 114)
+                                .addComponent(title)))
+                        .addGap(0, 31, Short.MAX_VALUE)))
                 .addGap(59, 59, 59))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(confirm)
+                .addGap(152, 152, 152))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(exit)
                 .addGap(7, 7, 7)
+                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(cmInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -142,31 +148,36 @@ public class rollerCoaster extends javax.swing.JFrame {
             height = Integer.parseInt(cmInput.getText());
         } catch (NumberFormatException ndf){
             output.setText("Please enter a number for height");
-        }
-        
-        
-        try {
-            back = backInput.getText();
-        } catch (Exception e){
-            output.setText("Please enter Y or N for back issues");
-        }
-        
-        try {
-            heart = heartInput.getText();
-        } catch (Exception e){
-            output.setText("Please enter Y or N for heart issues");
-        }
+        }        
         
         back = backInput.getText();
         heart = heartInput.getText();
         height = Integer.parseInt(cmInput.getText());
         
-        if (back.toLowerCase().equals("n") && heart.toLowerCase().equals("n") && height > 122){
-            output.setText("You are allowed to ride the roller coaster!");
-        } else
-            output.setText("You cannot ride the roller coaster");
-       
+        /*if (back.toLowerCase().equals("n") || back.toLowerCase().equals("y")){
+            if (heart.toLowerCase().equals("n") || heart.toLowerCase().equals("y")){
+                if (height > 122 && height < 188){
+                    output.setText("You are allowed to ride the roller coaster!");
+                } else
+                    output.setText("You cannot ride the roller coaster");
+            } else
+        } */
         
+        
+        if (height > 122 && height < 188){
+           if (back.toLowerCase().equals("n")) {
+               if (heart.toLowerCase().equals("n")) {
+                   output.setText("You are allowed to ride the roller coaster!");
+               } else if (heart.toLowerCase().equals("y")){
+                   output.setText("You cannot ride the roller coaster");
+               } else
+                   output.setText("Please put 'Y' or 'N' for the last 2 questions");    
+           } else if (back.toLowerCase().equals("y")) {
+               output.setText("You cannot ride the roller coaster");
+           } else
+               output.setText("Please put 'Y' or 'N' for the last 2 questions");     
+        } else
+            output.setText("You cannot ride the roller coaster");  
   
     }//GEN-LAST:event_confirmActionPerformed
 
